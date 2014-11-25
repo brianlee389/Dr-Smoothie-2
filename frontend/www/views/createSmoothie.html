@@ -1,0 +1,101 @@
+<div class="container-fluid screen" id="smoothieRecipeScreen">
+    <div class="background background-dark">
+        <div ng-controller="HeaderCtrl">
+             <div ng-include="header.url"></div>
+        </div>
+        <div class="text-center" ng-class="newSmoothieIngredientListClass">
+            <form novalidate>
+                <h4>My New Smoothie</h4>
+                <input type="text" ng-model="newSmoothieName" />
+                <table class="table smoothieList">
+                    <tr ng-repeat = "ingredient in selectedIngredients">
+                        <td>{{ingredient.name}}</td>
+                        <td class="text-right">
+                            <span class = "glyphicon glyphicon-minus" ng-click="removeIngredientFromRecipe({{ingredient}})"></span>
+                        </td>
+                    </tr>
+                </table>
+                <div class="btnHomePage" id="btnHomeCreateSmootie">
+                    <a ng-href="" type="button" class="btn btn-primary btn-lg btn-block" ng-click="createSmoothie()">Create Smoothie</a>
+                </div>
+            </form>
+        </div>
+        <div class="text-center">
+            <h4>Select Ingredients</h4>
+            
+        </div><br/>
+        <!-- Tab panes -->
+        <ul class="nav nav-tabs nav-justified nav-drsmoothie-bg" role="tablist" id="tabsCreateView">
+            <li class="active"><a href="#vegetables" role="tab" data-toggle="tab">Vegetables</a></li>
+            <li><a href="#fruits" role="tab" data-toggle="tab">Fruits</a></li>
+            <li><a href="#nuts" role="tab" data-toggle="tab">Nuts</a></li>
+            <li><a href="#other" role="tab" data-toggle="tab">Other</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div class="tab-pane fade in active" id="vegetables">
+                <table class="table smoothieList">
+                    <tr ng-repeat = "veggie in vegetables">
+                        <td>{{veggie.name}}</td>
+                        <td class="text-right">
+                            <span class = "glyphicon glyphicon-plus" ng-click="addIngredientToRecipe({{veggie}})"></span>
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td></tr>
+                </table>
+            </div>
+            <div class="tab-pane fade in active" id="fruits">
+                <table class="table smoothieList">
+                    <tr ng-repeat = "fruit in fruits">
+                        <td>{{fruit.name}}</td>
+                        <td class="text-right">
+                            <span class="glyphicon glyphicon-plus" ng-click="addIngredientToRecipe({{fruit}})"></span>
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td></tr>
+                </table>
+            </div>
+            <div class="tab-pane fade in active" id="nuts">
+                <table class="table smoothieList">
+                    <tr ng-repeat = "nut in nuts">
+                        <td>{{nut.name}}</td>
+                        <td class="text-right">
+                            <span class = "glyphicon glyphicon-plus" ng-click="addIngredientToRecipe({{nut}})"></span>
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td></tr>
+                </table>
+            </div>
+            <div class="tab-pane fade in active" id="other">
+                <table class="table smoothieList">
+                    <tr ng-repeat = "other in others">
+                        <td>{{other.name}}</td>
+                        <td class="text-right">
+                            <span class = "glyphicon glyphicon-plus" ng-click="addIngredientToRecipe({{other}})"></span>
+                        </td>
+                    </tr>
+                    <tr><td></td><td></td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+$('#tabsCreateView li a').click(function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+});
+//    var showNutrientsCreationForm = function() {
+//        $("#tableIngredients").hide();
+//        $("#tableNutrients").show();
+//        $("#tabIngredients").removeClass("active");
+//        $("#tabNutrients").addClass("active");
+//    }
+//    var showIngredientsCreationForm = function() {
+//        $("#tableIngredients").show();
+//        $("#tableNutrients").hide();
+//        $("#tabIngredients").addClass("active");
+//        $("#tabNutrients").removeClass("active");
+//    }
+</script>

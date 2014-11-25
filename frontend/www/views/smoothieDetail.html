@@ -1,0 +1,50 @@
+
+
+
+<div class="container-fluid screen" id="smoothieRecipeScreen" ng-controller="SmoothieDetailCtrl">
+    <div class="background background-dark">
+
+        <div ng-controller="HeaderCtrl">
+            <div ng-include="header.url"></div>
+        </div>
+        <ul class="nav nav-tabs nav-justified nav-drsmoothie-bg" role="tablist" id="recipe-nav-tab">
+          <li class="active"><a href="#recipe" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-list"></span> Recipe</a></li>
+          <li><a href="#nutrition" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-stats"></span> Nutritional value</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="recipe" align="center"><br><br><br>
+              <h3>Mango and Yogurt Smoothie</h3>
+              <p>1 mango</p>
+              <p>1 medium apple</p>
+              <p>1/4 cups milk</p>
+              <p>1 tbsp peanut butter</p><br /><br /><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/"></div>
+              <button class="btn btn-primary" ng-click="share()">Facebook Share</button>
+          </div>
+          <div class="tab-pane" id="nutrition" align="center">
+              <h4>Protein: 23g</h4><br />
+              <h4>Carbs: 50g</h4><br />
+              <h4>Fat: 12g</h4><br />
+              <h4>Vitamins</h4>
+              <p>Vitamin A 90 MU</p>
+              <p>Vitamin B12 600mg</p>
+              <p>Vitamin C 400mg</p>
+              <p>Vitamin K 100mg</p><br />
+              <h4>Minerals</h4>
+              <p>Calcium: 800mg</p>
+              <p>Potassium: 475mg</p>
+              <p>Iron: 80mg</p>
+          </div>
+        </div>
+    </div>
+</div>
+
+<script>
+  $(function () {
+    $('#recipe-nav-tab a').click(function(e) {
+        $(this).tab('show');
+        e.preventDefault();
+    });
+  });
+
+</script>

@@ -1,0 +1,62 @@
+<div class="container-fluid screen" id="smoothieRecipeScreen">
+    <div class="background background-dark">
+        <div ng-controller="HeaderCtrl">
+             <div ng-include="header.url"></div>
+        </div>
+        <ul class="nav nav-tabs nav-justified nav-drsmoothie-bg" role="tablist" id="recipe-nav-tab">
+            <li class="active"><a href="#my-recipes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-flag"></span> My Recipes</a></li>
+            <li><a href="#top-recipes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-star"></span> Top Recipes</a></li>
+            <li><a href="#recommended-recipes" role="tab" data-toggle="tab"><span class="glyphicon glyphicon-heart"></span> My Favorites</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane active" id="my-recipes">
+            <table class="table smoothieList" ng-controller="MySmoothieListCtrl">
+                <thead class="dark-background">
+                    <tr>
+                      <th>Smoothie</th>
+                      <th>Recommendations</th><th></th>
+                    </tr>
+                </thead>
+                <tbody class="dark-background">
+                <tr ng-repeat="smoothie in mySmoothies" ng-click="showSmoothieDetails(0)">
+                  <td>{{smoothie.name}}</td><td>
+                  {{smoothie.recommendations}}</td>
+                  <td><span class="glyphicon glyphicon-chevron-right"></span></td>
+                </tr>
+                </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="top-recipes">
+            <table class="table smoothieList" ng-controller="TopSmoothieListCtrl">
+              <thead class="dark-background">
+                  <tr><th>Smoothie</th><th>Recommendations</th><th></th></tr>
+              </thead>
+              <tbody class="dark-background">
+                  <tr ng-repeat="smoothie in topSmoothies" ng-click="showSmoothieDetails(smoothie.id)"><td>{{smoothie.name}}</td><td>{{smoothie.recommendations}}</td><td><span class="glyphicon glyphicon-chevron-right"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="tab-pane" id="recommended-recipes"> 
+            <table class="table smoothieList" ng-controller="FavSmoothieListCtrl">
+              <thead class="dark-background">
+                  <tr><th>Smoothie</th><th>Recommendations</th><th></th></tr>
+              </thead>
+              <tbody class="dark-background">
+                  <tr ng-repeat="smoothie in favSmoothies" ng-click="showSmoothieDetails(smoothie.id)"><td>{{smoothie.name}}</td><td>{{smoothie.recommendations}}</td><td><span class="glyphicon glyphicon-chevron-right"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+    </div>
+</div>
+<script>
+  $(function () {
+
+    $('#recipe-nav-tab  a').click(function(e) {
+        e.preventDefault();
+        $(this).tab('show');
+    });
+
+  });
+</script>

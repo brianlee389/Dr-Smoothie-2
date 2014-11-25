@@ -1,0 +1,23 @@
+
+<div class="container-fluid" id="homeScreen">
+    <div class="background background-normal">
+
+        <div class="appNameFrontScreen">Dr. Smoothie</div>
+        <div class="btnHomePage" id="btnLogin">
+            <a ng-click="login()" type="button" class="btn btn-primary btn-lg btn-block">Login with Facebook</a>
+        </div>
+       <!-- <div class="btnHomePage" id="btnHome">
+            <a ng-href="#/search" type="button" class="btn btn-primary btn-lg btn-block">Search</a>
+        </div>
+        <div class="btnHomePage" id="btnHomeRecipes">
+            <a ng-href="#/smoothieListPersonal" type="button" class="btn btn-default btn-lg btn-block">Recipes</a>
+        </div>
+        <div class="btnHomePage" id="btnHomeCreateSmootie">
+            <a ng-href="#/create" type="button" class="btn btn-primary btn-lg btn-block">Create Smoothie</a>
+        </div>-->
+        <div id="userInfo" align="center">
+            <div id="username">Hi {{userFirstName}} !</div>
+            <img id="imgProfilePic" class="fbProfilePicture" ng-src="http://graph.facebook.com/{{userID}}/picture?type=normal" /><br /><br />
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <!--<link href="lib/ionic/css/ionic.css" rel="stylesheet">-->
+      <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap-theme.min.css" />
+      <link rel="stylesheet" href="css/main.css">
+      <link rel="stylesheet" href="css/smoothieTheme.css">
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+      <!--<script src="lib/ionic/js/ionic.bundle.js"></script>-->
+      <!--<script src="lib/ionic/js/ionic-angular.js"></script>-->
+
+  </head>
+  <body>
+
+  <div id="fb-root"></div>
+  <script src = "lib/facebook-sdk.js"></script>
+
+  <div ng-app="comdrsmoothieappApp">
+
+      <ion-nav-view id="main"></ion-nav-view>
+
+    <div ng-view=""></div>
+    <!--<ion-pane>
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Ionic Blank Starter</h1>
+      </ion-header-bar>
+      <ion-content>
+      </ion-content>
+    </ion-pane>-->
+      <!--[if lt IE 9]>
+      <script src="lib/es5-shim/es5-shim.js"></script>
+      <![endif]-->
+
+    <script src="lib/jquery/dist/jquery.min.js"></script>
+    <script src="lib/jquery.animate-enhanced.min.js"></script>
+    <script src="lib/angular/angular.min.js"></script>
+    <script src="lib/json3/lib/json3.min.js"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="lib/angular-resource/angular-resource.min.js"></script>
+    <script src="lib/angular-cookies/angular-cookies.min.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+    <script src="lib/angular-touch/angular-touch.min.js"></script>
+    <script src="lib/angular-route/angular-route.min.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/openfb-angular.js"></script>
+    <script src="js/controllers/header.js"></script>
+    <script src="js/controllers/restFactory.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/controllers/search.js"></script>
+    <script src="js/controllers/smoothieListPersonal.js"></script>
+    <script src="js/controllers/smoothieListTop.js"></script>
+    <script src="js/controllers/smoothieDetail.js"></script>
+    <script src="js/controllers/CreateSmoothie.js"></script>
+    <script src="js/controllers/smoothieListFavorite.js"></script>
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+      </div>
+  <script>
+
+$(document).ready(function() {
+  $.ajaxSetup({ cache: true });
+  $.getScript('//connect.facebook.net/en_UK/all.js', function(){
+  //alert(1);
+    FB.init({
+      appId: '1447784508842506',
+          xfbml      : true,
+          version    : 'v2.0'
+    });
+    //$('#loginbutton,#feedbutton').removeAttr('disabled');
+    //FB.getLoginStatus(updateStatusCallback);
+  });
+});
+  </script>
+  </body>
+</html>
