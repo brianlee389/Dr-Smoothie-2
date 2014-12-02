@@ -16,29 +16,28 @@ import play.modules.reactivemongo.json.BSONFormats.BSONObjectIDFormat
  * That Dev Guy: Brian Lee
  */
 
-case class Ingredient(id: Option[BSONObjectID], name: String, foodgroup: Int)
+case class Nutrient(id: Option[BSONObjectID], name: String, group: Int)
 
-object Ingredient {
-  /** serialize/deserialize a Ingredient into/from JSON value */
-  implicit val IngredientFormat = Json.format[Ingredient]
+object Nutrient {
+  /** serialize/deserialize a Nutrient into/from JSON value */
+  implicit val NutrientFormat = Json.format[Nutrient]
 
-  implicit object IngredientBSONWriter extends BSONDocumentWriter[Ingredient] {
-    def write(ingr: Ingredient): BSONDocument =
+ implicit object NutrientBSONWriter extends BSONDocumentWriter[Nutrient] {
+    def write(nutr: Nutrient): BSONDocument =
       BSONDocument(
-        "_id" -> ingr.id.getOrElse(BSONObjectID.generate),
-        "name" -> ingr.name,
-        "foodgroup" -> ingr.foodgroup
+        "_id" -> nutr.id.getOrElse(BSONObjectID.generate),
+        "name" -> nutr.name,
+        "group" -> nutr.group
       )
   }
 
-  /** deserialize a Ingredient from a BSON */
-  implicit object IngredientBSONReader extends BSONDocumentReader[Ingredient] {
-    def read(doc: BSONDocument): Ingredient =
-      
-      Ingredient(
+  /** deserialize a Nutrient from a BSON */
+  implicit object NutrientBSONReader extends BSONDocumentReader[Nutrient] {
+    def read(doc: BSONDocument): Nutrient =
+      Nutrient(
         doc.getAs[BSONObjectID]("_id"),
         doc.getAs[String]("name").get,
-        doc.getAs[Int]("foodgroup").get
+        doc.getAs[Int]("group").get
       )
   }
 }

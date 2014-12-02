@@ -32,13 +32,18 @@ app.controller("AppCtrl", ["$scope", "$location", function($scope, $location) {
 }]);
 
 // the list controller
-app.controller("ListCtrl", ["$scope", "$resource", "apiUrl", function($scope, $resource, apiUrl) {
+/*app.controller("ListCtrl", ["$scope", "$resource", "apiUrl", function($scope, $resource, apiUrl) {
 	var Celebrities = $resource(apiUrl + "/celebrities"); // a RESTful-capable resource object
+	$scope.celebrities = Celebrities.query(); // for the list of celebrities in public/html/main.html
+}]);*/
+app.controller("ListCtrl", ["$scope", "$resource", "apiUrl", function($scope, $resource, apiUrl) {
+	var Celebrities = $resource(apiUrl + "/ingredients"); // a RESTful-capable resource object
 	$scope.celebrities = Celebrities.query(); // for the list of celebrities in public/html/main.html
 }]);
 
 // the create controller
-app.controller("CreateCtrl", ["$scope", "$resource", "$timeout", "apiUrl", function($scope, $resource, $timeout, apiUrl) {
+app.controller("CreateCtrl", ["$scope", "$resource", "$timeout", "apiUrl", 
+	function($scope, $resource, $timeout, apiUrl) {
 	// to save a celebrity
 	$scope.save = function() {
 		var CreateCelebrity = $resource(apiUrl + "/celebrities/new"); // a RESTful-capable resource object

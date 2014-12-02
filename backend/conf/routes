@@ -19,7 +19,7 @@ DELETE  /api/celebrities/:id		controllers.Celebrities.delete(id: String)
 
 # Ingredient Routes
 GET     /api/ingredients            controllers.Ingredients.index
-#POST    /api/ingredients/new		controllers.Ingredients.create
+POST    /api/ingredients/create		controllers.Ingredients.create
 #GET     /api/ingredients/:id		controllers.Ingredients.show(id: String)
 #POST    /api/ingredients/:id		controllers.Ingredients.update(id: String)
 #DELETE  /api/ingredients/:id		controllers.Ingredients.delete(id: String)
