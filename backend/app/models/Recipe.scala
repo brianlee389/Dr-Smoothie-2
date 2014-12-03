@@ -16,7 +16,7 @@ import play.modules.reactivemongo.json.BSONFormats.BSONObjectIDFormat
  * That Dev Guy: Brian Lee
  */
 
-case class Recipe(id: Option[BSONObjectID], name: String, user: User)
+case class Recipe(id: Option[String], name: String, userid: String)
 
 object Recipe {
   /** serialize/deserialize a Recipe into/from JSON value */
@@ -25,9 +25,9 @@ object Recipe {
  implicit object RecipeBSONWriter extends BSONDocumentWriter[Recipe] {
     def write(recipe: Recipe): BSONDocument =
       BSONDocument(
-        "_id" -> recipe.id.getOrElse(BSONObjectID.generate),
+        "_id" -> recipe.id.getOrElse(BSONObjectID.generate.stringify),
         "name" -> recipe.name,
-        "user" -> recipe.user
+        "userid" -> recipe.userid
       )
   }
 
@@ -35,9 +35,9 @@ object Recipe {
   implicit object RecipeBSONReader extends BSONDocumentReader[Recipe] {
     def read(doc: BSONDocument): Recipe =
       Recipe(
-        doc.getAs[BSONObjectID]("_id"),
+        doc.getAs[String]("_id"),
         doc.getAs[String]("name").get,
-        doc.getAs[User]("user").get
+        doc.getAs[String]("userid").get
       )
   }
 }

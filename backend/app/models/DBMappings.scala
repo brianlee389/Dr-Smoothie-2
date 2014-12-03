@@ -22,7 +22,7 @@ import play.modules.reactivemongo.json.BSONFormats.BSONObjectIDFormat
  */
 
 case class RecipeIngredientMap(id: Option[BSONObjectID], recipe: Recipe, ingredient: Ingredient)
-case class NutrIngrMap(id: Option[BSONObjectID], ingredient: Ingredient, nutrient: Nutrient, quantity: Double)
+case class NutrIngrMap(id: Option[BSONObjectID], ingredient: Ingredient, nutrient: Nutrient)
 case class RecipeRecommendation(id: Option[BSONObjectID], recipe: Recipe, user: User)
 
 object RecipeIngredientMap {
@@ -58,8 +58,9 @@ object NutrIngrMap {
       BSONDocument(
         "_id" -> nim.id.getOrElse(BSONObjectID.generate),
         "nutrient" -> nim.nutrient,
-        "ingredient" -> nim.ingredient,
-        "quantity" -> nim.quantity
+        "ingredient" -> nim.ingredient
+        //,
+        //"quantity" -> nim.quantity
       )
   }
 
@@ -69,8 +70,9 @@ object NutrIngrMap {
       NutrIngrMap(
         doc.getAs[BSONObjectID]("_id"),
         doc.getAs[Ingredient]("ingredient").get,
-        doc.getAs[Nutrient]("nutrient").get,
-        doc.getAs[Double]("quantity").get
+        doc.getAs[Nutrient]("nutrient").get
+        //,
+        //doc.getAs[Double]("quantity").get
       )
   }
 }

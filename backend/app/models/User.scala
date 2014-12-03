@@ -16,7 +16,7 @@ import play.modules.reactivemongo.json.BSONFormats.BSONObjectIDFormat
  * That Dev Guy: Brian Lee
  */
 
-case class User(id: Option[BSONObjectID], key: String)
+case class User(id: Option[String], key: String)
 
 object User {
   /** serialize/deserialize a User into/from JSON value */
@@ -25,8 +25,8 @@ object User {
  implicit object UserBSONWriter extends BSONDocumentWriter[User] {
     def write(user: User): BSONDocument =
       BSONDocument(
-        "_id" -> user.id.getOrElse(BSONObjectID.generate),
-        "name" -> user.key
+        "_id" -> user.id.getOrElse(BSONObjectID.generate.stringify),
+        "key" -> user.key
       )
   }
 
@@ -34,7 +34,7 @@ object User {
   implicit object UserBSONReader extends BSONDocumentReader[User] {
     def read(doc: BSONDocument): User =
       User(
-        doc.getAs[BSONObjectID]("_id"),
+        doc.getAs[String]("_id"),
         doc.getAs[String]("key").get
       )
   }
