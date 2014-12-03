@@ -2,10 +2,14 @@ package controllers
 
 import scala.concurrent.ExecutionContext.Implicits.global
 
-import models.Nutrient
-import models.Nutrient.NutrientFormat
-import models.Nutrient.NutrientBSONReader
-import models.Nutrient.NutrientBSONWriter
+import models.User
+import models.User.UserFormat
+import models.User.UserBSONReader
+import models.User.UserBSONWriter
+import models.Recipe
+import models.Recipe.RecipeFormat
+import models.Recipe.RecipeBSONReader
+import models.Recipe.RecipeBSONWriter
 import play.api.libs.json.Json
 import play.api.mvc.Action
 import play.api.mvc.Controller
@@ -22,46 +26,46 @@ import reactivemongo.bson.Producer.nameValue2Producer
  * That dev guy Brian Lee
  */
 
-object Nutrients extends Controller with MongoController {
-  val collection = db[BSONCollection]("nutrients")
+object Recipes extends Controller with MongoController {
+  // Recipe db collection
+  val collection = db[BSONCollection]("recipes")
 
-  /** list all nutrients */
+  /** list all Recipes */
   def index = Action { implicit request =>
     Async {
       val cursor = collection.find(
-        BSONDocument()).cursor[Nutrient] // get all the fields of all the nutrients
-      val futureList = cursor.toList // convert it to a list of nutrient
-      futureList.map { nutrients => Ok(Json.toJson(nutrients)) } // convert it to a JSON and return it
+        BSONDocument()).cursor[Recipe] // get all the fields of all the Users
+      val futureList = cursor.toList // convert it to a list of User
+      futureList.map { recipes => Ok(Json.toJson(recipes)) } // convert it to a JSON and return it
     }
   }
   
-  /** create a nutrient from the given JSON */
+  /** create a recipe from the given JSON */
+  /*
+  {"name":"sample recipe name", "userid": 123 }
+  */
   def create() = Action(parse.json) { request =>
     Async {
       val name: String = request.body.\("name").as[String]
-      val group: Int = request.body.\("group").as[Int]
-      // create the nutrient
-      val createdIngr: Nutrient = 
-      Nutrient(Option(BSONObjectID.generate.stringify), name, group) 
-
-      // add to database
-      collection.insert(createdIngr).map(
-        _ => Ok(Json.toJson(createdIngr))) 
+      val user: String = request.body.\("userid").as[String]
+      val createdRecipe: Recipe = Recipe(Option(BSONObjectID.generate.stringify), name, user)
+      collection.insert(createdRecipe).map(
+        _ => Ok(Json.toJson(createdRecipe)))
     }
   }
 /*  
-  /** retrieve the nutrient for the given id as JSON */
+  /** retrieve the user for the given id as JSON */
   def show(id: String) = Action(parse.empty) { request =>
     Async {
       // get the corresponding BSONObjectID
       val objectID = new BSONObjectID(id) 
-      // get the nutrient having this id (there will be 0 or 1 result)
-      val futurenutrient = collection.find(BSONDocument("_id" -> objectID)).one[nutrient]
-      futurenutrient.map { ingr => Ok(Json.toJson(ingr)) }
+      // get the user having this id (there will be 0 or 1 result)
+      val futureuser = collection.find(BSONDocument("_id" -> objectID)).one[User]
+      futureUser.map { ingr => Ok(Json.toJson(ingr)) }
     }
   }
   
-  /** update the nutrient for the given id from the JSON body */
+  /** update the User for the given id from the JSON body */
   def update(id: String) = Action(parse.json) { request =>
     Async {
       val objectID = new BSONObjectID(id) // get the corresponding BSONObjectID
@@ -69,22 +73,22 @@ object Nutrients extends Controller with MongoController {
       val name: String = request.body.\("name").toString()
       //nameFormat.reads(nameJSON).get
       val type: Int = request.body.\("type").toInt()
-      val modifier = BSONDocument( // create the modifier nutrient
+      val modifier = BSONDocument( // create the modifier User
         "$set" -> BSONDocument(
           "name" -> name,
           "type" -> type
           ))
-      // return the modified nutrient in a JSON
+      // return the modified User in a JSON
       collection.update(BSONDocument("_id" -> objectID), modifier).map(
-        _ => Ok(Json.toJson(Nutrient(Option(objectID), name, type)))) 
+        _ => Ok(Json.toJson(User(Option(objectID), name, type)))) 
     }
   }
   
-  /** delete a nutrient for the given id */
+  /** delete a User for the given id */
   def delete(id: String) = Action(parse.empty) { request =>
     Async {
       val objectID = new BSONObjectID(id) // get the corresponding BSONObjectID
-      collection.remove(BSONDocument("_id" -> objectID)).map( // remove the nutrient
+      collection.remove(BSONDocument("_id" -> objectID)).map( // remove the User
         _ => Ok(Json.obj())).recover { case _ => InternalServerError } // and return an empty JSON while recovering from errors if any
     }
   }*/

@@ -38,12 +38,25 @@ object Ingredients extends Controller with MongoController {
   /** create a ingredient from the given JSON */
   def create() = Action(parse.json) { request =>
     Async {
-      //val nameJSON = request.body.\("name")
       val name: String = request.body.\("name").as[String]
       val foodgroup:Int = request.body.\("foodgroup").as[Int]
 
       // create the Ingredient
-      val createdIngr = Ingredient(Option(BSONObjectID.generate), name, foodgroup)
+      val createdIngr = Ingredient(BSONObjectID.generate.stringify, name, foodgroup)
+      collection.insert(createdIngr).map(
+        _ => Ok(Json.toJson(createdIngr))) 
+        // return the created ingredient in a JSON
+    }
+  }
+
+    /** create a ingredient from the given JSON */
+  def ingrnutr() = Action(parse.json) { request =>
+    Async {
+      val name: String = request.body.\("name").as[String]
+      val foodgroup:Int = request.body.\("foodgroup").as[Int]
+
+      // create the Ingredient
+      val createdIngr = Ingredient(BSONObjectID.generate.stringify, name, foodgroup)
       collection.insert(createdIngr).map(
         _ => Ok(Json.toJson(createdIngr))) 
         // return the created ingredient in a JSON
