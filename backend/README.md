@@ -1,30 +1,21 @@
-# The Eventual PlayFramework-AngularJS-Bootstrap-MongoDB Seed Project
+# Dr-Smoothie-2
+# PlayFramework-MongoDB Backend
+# Ionic/AngularJs/Bootstrap/Frontend 
 
 ## Introduction
-
-The Eventual PlayFramework-AngularJS-Bootstrap-MongoDB Seed Project is a seed project that provides a [CRUD](http://en.wikipedia.org/wiki/Create,_read,_update_and_delete) implementation. It uses the [Play Framework](http://www.playframework.com/) and [MongoDB](http://www.mongodb.org/) on the back-end, and [AngularJS](http://angularjs.org/) and [Bootstrap](http://getbootstrap.com/) on the front-end. It is designed to underpin the development of future applications that adopt the same combination of technologies.
+Dr-Smoothie is mobile web application that can be compiled into an iPhone or Android application. This application allows you to create a smoothie recipe and share it with Facebook friends or through the Dr-Smoothie application. It also allows you to find what smoothie recipe random people or your friends have made.
 
 ## Features
-The seed has the following features (to recall a few):
+1. Create a Smoothie Recipe
 
-1. It offers a complete [single-page application](http://en.wikipedia.org/wiki/Single-page_application) experience.
+2. Share Smoothie Recipes
 
-2. It uses the asynchronous and non-blocking [ReactiveMongo driver](http://reactivemongo.org/).
+3. Find other's Smoothie Recipes
 
-3. It supports the new HTML5 routing and histoty API (i.e., no hashbangs, no bullshit).
+4. See what nutrients are in a smoothie recipe
 
-4. It packs JavaScript libraries inside the solution (i.e., no WebJars, no download time, and again no bullshit).
 
-5. It makes minimal usage of [Play Scala templates](http://www.playframework.com/documentation/2.1.5/ScalaTemplates), thereby clearing the space for AngularJS directives in your HTML.
-
-6. It cleanly separates between Play routes that serve HTML and those that serve JSON.
-
-7. It cleanly separates and optimally maps AngularJS routes to Play routes.
-
-8. It conceals Play routes from end-users, thereby ensuring that all pages are properly styled before they are presented.
-
-## Ingredients
-The seed uses the following software components:
+## Need Components:
 
 1. Play Framework 2.1.5
 
@@ -36,7 +27,9 @@ The seed uses the following software components:
 
 5. jQuery 1.10.2 (used by 4)
 
-## Deployment
+6. Ionic
+
+## How to do Deployment
 Follow these steps in order to deploy the seed on your machine:
 
 1. Download and extract Play Framework 2.1.5.
@@ -57,21 +50,12 @@ Follow these steps in order to deploy the seed on your machine:
 
 ## Screenshots
 
-### Celebrities List
-![Celebrities List](./screenshots/Celebrities%20List.png)
+### Smoothie List
+![Smoothie List](./screenshots/Celebrities%20List.png)
 
-### Adding a Celebrity
-![Adding a Celebrity](./screenshots/Adding%20a%20Celebrity.png)
+### Adding a Smoothie
+![Adding a Smoothie Recipe](./screenshots/Adding%20a%20Celebrity.png)
 
-### Editing/Deleting a Celebrity
-![Editing a Celebrity](./screenshots/Editing-Deleting%20a%20Celebrity.png)
+### Editing/Deleting a Smoothie
+![Editing a Smoothie Recipe](./screenshots/Editing-Deleting%20a%20Celebrity.png)
 
-## Licence
-
-This software is licensed under the **[GNU General Public License Version 3](./LICENSE)**.
-
-Copyright &copy; 2013 **[Sari Haj Hussein](http://sarihh.info)**.
-
-## Code Disclaimer
-
-The author of this software code has used his best efforts in preparing the code. These efforts include the development, research, testing, and optimization of the theories and programs to determine their effectiveness. This software code is not designed or intended for use in the design, construction, operation or maintenance of any nuclear facility. Author disclaims any express or implied warranty of fitness for such uses. The author makes no warranty of any kind, expressed or implied, with regard to this software code or to the documentation accompanying it. In no event shall the author be liable for any direct, indirect, incidental, special, exemplary, or consequential damages (including but not limited to, procurement of substitute goods or services; loss of use, data, or profits; or business interruption whatsoever) arising out of, the furnishing, performance, or use of this software code, even if advised of the possibilities of such damages.
