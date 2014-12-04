@@ -36,6 +36,12 @@ object Nutrients extends Controller with MongoController {
   }
   
   /** create a nutrient from the given JSON */
+  /*
+  sample json
+  
+  { "name": "sample name", "group": 123 }
+
+  */
   def create() = Action(parse.json) { request =>
     Async {
       val name: String = request.body.\("name").as[String]

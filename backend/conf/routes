@@ -4,10 +4,10 @@
 
 # Not needed
 # Home page 
-#GET     /                           controllers.Application.#index(any = "none")
+GET     /                           controllers.Application.index(any = "none")
 
 # Play routes serving HTML to AngularJS start with /views
-#GET     /views/*any                 controllers.Application.loadPublicHTML(any)
+GET     /views/*any                 controllers.Application.loadPublicHTML(any)
 
 # Play routes serving JSON to AngularJS start with /api
 GET     /api/celebrities            controllers.Celebrities.index
@@ -23,22 +23,24 @@ POST    /api/users/create			controllers.Users.create
 
 # Ingredient Routes
 GET     /api/ingredients            controllers.Ingredients.index
-POST    /api/ingredients/create		controllers.Ingredients.create
+POST    /api/ingredients/create	controllers.Ingredients.create
 #GET     /api/ingredients/:id		controllers.Ingredients.show(id: String)
 #POST    /api/ingredients/:id		controllers.Ingredients.update(id: String)
 #DELETE  /api/ingredients/:id		controllers.Ingredients.delete(id: String)
 
 # Recipes Routes
 GET     /api/recipes 				controllers.Recipes.index
-POST    /api/recipes/create			controllers.Recipes.create
+GET		/api/recipes/:id 			controllers.Recipes.getRecipe(id: String)
+POST    /api/recipes/create			controllers.Recipes.createRecipe
+POST	/api/recipes/addIngredient	controllers.Recipes.AddIngredient
+#GET     /api/recipes/:id			controllers.Recipes.recipelist(id: String)
 
 # Nutrients Routes
 GET     /api/nutrients 				controllers.Nutrients.index
 POST    /api/nutrients/create		controllers.Nutrients.create
 
-
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
 
 # Redirect all unknown routes to the index page
-#GET     /*any						controllers.Application.index(any)
+GET     /*any						controllers.Application.index(any)

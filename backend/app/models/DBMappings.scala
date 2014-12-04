@@ -21,9 +21,9 @@ import play.modules.reactivemongo.json.BSONFormats.BSONObjectIDFormat
  mess things up trying to implement better design patterns and abstractions.
  */
 
-case class RecipeIngredientMap(id: Option[BSONObjectID], recipe: Recipe, ingredient: Ingredient)
-case class NutrIngrMap(id: Option[BSONObjectID], ingredient: Ingredient, nutrient: Nutrient)
-case class RecipeRecommendation(id: Option[BSONObjectID], recipe: Recipe, user: User)
+case class RecipeIngredientMap(id: Option[String], recipeId: String, ingredient: Ingredient)
+case class IngrNutrMap(id: Option[String], ingredientId: String, nutrient: Nutrient)
+case class RecipeRecommendation(id: Option[String], recipe: Recipe, user: User)
 
 object RecipeIngredientMap {
   /** serialize/deserialize a RecipeIngredientMap into/from JSON value */
@@ -32,8 +32,8 @@ object RecipeIngredientMap {
   implicit object RecipeIngredientMapBSONWriter extends BSONDocumentWriter[RecipeIngredientMap] {
     def write(rim: RecipeIngredientMap): BSONDocument =
       BSONDocument(
-        "_id" -> rim.id.getOrElse(BSONObjectID.generate),
-        "recipe" -> rim.recipe,
+        "_id" -> rim.id.getOrElse(BSONObjectID.generate.stringify),
+        "recipeid" -> rim.recipeId,
         "ingredient" -> rim.ingredient
       )
   }
@@ -42,34 +42,34 @@ object RecipeIngredientMap {
   implicit object RecipeIngredientMapBSONReader extends BSONDocumentReader[RecipeIngredientMap] {
     def read(doc: BSONDocument): RecipeIngredientMap =
       RecipeIngredientMap(
-        doc.getAs[BSONObjectID]("_id"),
-        doc.getAs[Recipe]("recipe").get,
+        doc.getAs[String]("_id"),
+        doc.getAs[String]("recipeid").get,
         doc.getAs[Ingredient]("ingredient").get
       )
   }
 }
 
-object NutrIngrMap {
-  /** serialize/deserialize a NutrIngrMap into/from JSON value */
-  implicit val NutrIngrMapFormat = Json.format[NutrIngrMap]
+object IngrNutrMap {
+  /** serialize/deserialize a IngrNutrMap into/from JSON value */
+  implicit val IngrNutrMapFormat = Json.format[IngrNutrMap]
 
-  implicit object NutrIngrMapBSONWriter extends BSONDocumentWriter[NutrIngrMap] {
-    def write(nim: NutrIngrMap): BSONDocument =
+  implicit object IngrNutrMapBSONWriter extends BSONDocumentWriter[IngrNutrMap] {
+    def write(nim: IngrNutrMap): BSONDocument =
       BSONDocument(
-        "_id" -> nim.id.getOrElse(BSONObjectID.generate),
-        "nutrient" -> nim.nutrient,
-        "ingredient" -> nim.ingredient
+        "_id" -> nim.id.getOrElse(BSONObjectID.generate.stringify),
+        "ingredientid" -> nim.ingredientId,
+        "nutrient" -> nim.nutrient
         //,
         //"quantity" -> nim.quantity
       )
   }
 
-  /** deserialize a NutrIngrMap from a BSON */
-  implicit object NutrIngrMapBSONReader extends BSONDocumentReader[NutrIngrMap] {
-    def read(doc: BSONDocument): NutrIngrMap =
-      NutrIngrMap(
-        doc.getAs[BSONObjectID]("_id"),
-        doc.getAs[Ingredient]("ingredient").get,
+  /** deserialize a IngrNutrMap from a BSON */
+  implicit object IngrNutrMapBSONReader extends BSONDocumentReader[IngrNutrMap] {
+    def read(doc: BSONDocument): IngrNutrMap =
+      IngrNutrMap(
+        doc.getAs[String]("_id"),
+        doc.getAs[String]("ingredientid").get,
         doc.getAs[Nutrient]("nutrient").get
         //,
         //doc.getAs[Double]("quantity").get
