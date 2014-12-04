@@ -3,6 +3,7 @@
 ## Introduction
 Dr-Smoothie is mobile web application that can be compiled into an iPhone or Android application. This application allows you to create a smoothie recipe and share it with Facebook friends or through the Dr-Smoothie application. It also allows you to find what smoothie recipe random people or your friends have made.
 
+Dr-Smoothie-2 an improved version utilizing Play Framework and MongoDB instead of Django Web Framework on Google App Engine
 ## Features
 1. Create a Smoothie Recipe
 
