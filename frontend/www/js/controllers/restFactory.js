@@ -10,7 +10,7 @@
 angular.module('comdrsmoothieappApp')
   .factory('restFactory', ['$http', function ($http) {
 
-  var urlBase = 'http://localhost:8000';
+  var urlBase = 'http://localhost:9000/api';
 //  var urlBase = 'https://dr-smoothie.appspot.com';
   var restFactory = {};
 
@@ -42,7 +42,17 @@ angular.module('comdrsmoothieappApp')
   };
 
   restFactory.addUser = function(facebookID){
-  	return $http.post(urlBase + '/AddUser', {fbID: facebookID}).success(function (data) {console.log(data)});
+
+
+    return $http({
+        method: "POST",
+        url: urlBase + '/users/create',
+        data: JSON.stringify({"key": facebookID}),
+        headers: {
+            'Content-Type': 'application/json; charset=utf-8'
+        }
+    }).success(function (data, status, headers, config) {console.log(data);});
+  	//return $http.post(urlBase + '/users/create', {"key": facebookID}).success(function (data) {console.log(data)});
   };
 
   //delete doesnot take a body

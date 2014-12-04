@@ -22,13 +22,14 @@ angular.module('comdrsmoothieappApp')
 
     // login
     $scope.login = function() {
-    alert("blah");
+    //alert("blah");
         openFB.login('email,publish_stream',
             function(data) {
                 alert(openFB.getAccessToken());
                 redirectToHomePage(2000);
 
                 console.log(data);
+                console.log("LOGIN WAS SUCCESSFUL!!!!");
                 restFactory.addUser(openFB.getAccessToken());
             },
             function() {
@@ -67,7 +68,7 @@ angular.module('comdrsmoothieappApp')
 
     // check if the user is already logged into Facebook
     openFB.getLoginStatus (function (param) {
-    console.log(param);
+    //console.log(param);
         if (param.status == "connected") {
             showUserInfo(function (data) {
                 $("#userInfo").show();
