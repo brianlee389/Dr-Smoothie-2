@@ -26,11 +26,14 @@ angular.module('comdrsmoothieappApp')
     $scope.login = function() {
         openFB.login('email,publish_stream',
             function(data) {
+            alert("blah");
                 redirectToHomePage(2000);
+
                 console.log(data);
                 restFactory.addUser(openFB.getAccessToken());
             },
             function() {
+            alert("blah1");
                 location.reload();
             });
     }

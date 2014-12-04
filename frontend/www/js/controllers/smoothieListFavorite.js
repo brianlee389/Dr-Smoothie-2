@@ -15,11 +15,11 @@ angular.module('comdrsmoothieappApp')
       'Karma'
     ];
 
-    restFactory.getMyFavorites().success(function(data) {
+    restFactory.getMyFavorites(0).success(function(data) {
       $scope.favSmoothies = data;
     });
 
-    $scope.showSmoothieDetails = function(smoothie) {
+    $scope.showSmoothieDetails = function(id) {
       window.location = '#/smoothieDetail';
     };
   }]);

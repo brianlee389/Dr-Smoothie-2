@@ -11,7 +11,7 @@ angular.module('comdrsmoothieappApp')
   .factory('restFactory', ['$http', function ($http) {
 
   var urlBase = 'http://localhost:8000';
-  // var urlBase = 'https://dr-smoothie.appspot.com';
+//  var urlBase = 'https://dr-smoothie.appspot.com';
   var restFactory = {};
 
   restFactory.getRecipeDetails = function(id) {
@@ -31,7 +31,14 @@ angular.module('comdrsmoothieappApp')
   };
 
   restFactory.addRecipe = function(recipe) {
-  	return null; //$http.get(urlBase + '/AddRecipe?name=2&', recipe);
+   return $http({
+          url: urlBase + '/AddRecipe',
+          method: "POST",
+          data: recipe
+      }).success(function (data, status, headers, config) {
+        console.log(data);
+      });
+  	//return $http.post(urlBase + '/AddRecipe', recipe);
   };
 
   restFactory.addUser = function(facebookID){
@@ -56,12 +63,11 @@ angular.module('comdrsmoothieappApp')
   	return $http.get(urlBase + '/Search/Nutrient?name=' + nut);
   };
 
-  restFactory.getIngredients = function(type, successCallback){
-    // if(type == undefined) {
-    //   type = "NONE"
-    // }
-    // return $http.get(urlBase + '/Ingredients?type='+type).success(successCallback);
-    return null;
+  restFactory.getIngredients = function(type, successCallback) {
+    if(type == undefined) {
+      type = "NONE"
+    }
+    return $http.get(urlBase + '/Ingredients?type='+type).success(successCallback);
   };
 
   return restFactory;

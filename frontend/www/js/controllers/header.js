@@ -1,4 +1,7 @@
 
+'use strict';
+
+
 angular.module('comdrsmoothieappApp')
   .controller('HeaderCtrl', function ($scope) {
 

@@ -10,7 +10,7 @@ describe('login', function() {
     browser.driver.get('http://localhost:8100/#');
 
     browser.driver.findElement(By.className('btn')).click();
-    
+    var mainHandle;
     browser.driver.getAllWindowHandles().then(function(handles){
       //switching to login page
       browser.driver.switchTo().window(handles[1]);
@@ -31,8 +31,6 @@ describe('login', function() {
       //switching back to main page
       browser.driver.switchTo().window(handles[0]);
     });
-
-    browser.sleep(4000);
 
   });
 });
