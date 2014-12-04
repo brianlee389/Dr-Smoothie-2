@@ -73,6 +73,14 @@ object Recipes extends Controller with MongoController {
     }
   }
 
+  def optionsRequestWithParam(id: String) = Action {
+    Ok("...").withHeaders(
+      ACCESS_CONTROL_ALLOW_ORIGIN -> "*",
+      ACCESS_CONTROL_ALLOW_METHODS -> "POST",
+      ACCESS_CONTROL_MAX_AGE -> "300",
+      ACCESS_CONTROL_ALLOW_HEADERS -> "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent")
+  }
+
   /** list all RecipeIngredient Mappings 
     returns json in the format:
     [{"recipeid": "ad12", ingredientid:"ss22"}, ...]

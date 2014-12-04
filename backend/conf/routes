@@ -14,7 +14,9 @@ OPTIONS /api/users/create           controllers.Users.optionsRequest
 
 # Ingredient Routes
 GET     /api/ingredients            controllers.Ingredients.index
+OPTIONS /api/ingredients           controllers.Users.optionsRequest
 GET     /api/ingredients/:id        controllers.Ingredients.getIngredient(id: String)
+OPTIONS /api/ingredients/:id        controllers.Recipes.optionsRequestWithParam(id: String)
 POST    /api/ingredients/create	controllers.Ingredients.create
 OPTIONS /api/ingredients/create           controllers.Users.optionsRequest
 POST    /api/ingredients/nutrient/add	controllers.Ingredients.addNutrient
@@ -23,6 +25,7 @@ OPTIONS /api/ingredients/nutrient/add           controllers.Users.optionsRequest
 
 # Recipes Routes
 GET     /api/recipes 				controllers.Recipes.index
+OPTIONS /api/recipes                controllers.Users.optionsRequest
 GET		/api/recipes/:id 			controllers.Recipes.getRecipe(id: String)
 GET     /api/recipes/mappings/		controllers.Recipes.mappings
 GET     /api/recipes/mappings/:id	controllers.Recipes.recipeMappings(id: String)
