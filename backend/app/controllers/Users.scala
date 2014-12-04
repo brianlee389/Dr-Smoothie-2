@@ -43,9 +43,22 @@ object Users extends Controller with MongoController {
       // create the User
       val createdUser = User(Option(BSONObjectID.generate.stringify), key)
       UserCollection.insert(createdUser).map(
-        _ => Ok(Json.toJson(createdUser))) 
+        _ => Ok(Json.toJson(createdUser)).withHeaders("Access-Control-Allow-Origin" -> "*",
+      "Allow" -> "*",
+      "Access-Control-Allow-Methods" -> "POST, GET, PUT, DELETE, OPTIONS",
+      "Access-Control-Allow-Headers" -> "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent",
+      "ACCESS_CONTROL_ALLOW_CREDENTIALS" -> "true"))
         // return the created user in a JSON
     }
+  }
+
+  /** create a user from the given JSON */
+  def optionsRequest() = Action {
+    Ok("...").withHeaders(
+      ACCESS_CONTROL_ALLOW_ORIGIN -> "*",
+      ACCESS_CONTROL_ALLOW_METHODS -> "POST",
+      ACCESS_CONTROL_MAX_AGE -> "300",
+      ACCESS_CONTROL_ALLOW_HEADERS -> "Origin, X-Requested-With, Content-Type, Accept, Referer, User-Agent")
   }
 /*  
   /** retrieve the user for the given id as JSON */

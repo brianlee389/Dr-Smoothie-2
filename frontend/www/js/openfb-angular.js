@@ -64,7 +64,9 @@ angular.module('comdrsmoothieappApp')
         var getLoginStatus = function(callback) {
                 var token = tokenStore['fbtoken'],
                     loginStatus = {};
+                    console.log("TOKEN STORE::::::::::::");
                     console.log(tokenStore);
+                    console.log((new Date()).getTime() / 1000);
 
                 if (token !== undefined) {
                     if(tokenStore["expires_at"] <= (new Date()).getTime() / 1000) {
