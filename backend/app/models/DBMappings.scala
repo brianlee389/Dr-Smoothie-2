@@ -21,9 +21,9 @@ import play.modules.reactivemongo.json.BSONFormats.BSONObjectIDFormat
  mess things up trying to implement better design patterns and abstractions.
  */
 
-case class RecipeIngredientMap(id: Option[String], recipeId: String, ingredient: Ingredient)
-case class IngrNutrMap(id: Option[String], ingredientId: String, nutrient: Nutrient)
-case class RecipeRecommendation(id: Option[String], recipe: Recipe, user: User)
+case class RecipeIngredientMap(id: Option[String], recipeId: String, ingredientId: String)
+case class IngrNutrMap(id: Option[String], ingredientId: String, nutrientId: String)
+case class Recommendation(id: Option[String], recipeId: String, userId: String)
 
 object RecipeIngredientMap {
   /** serialize/deserialize a RecipeIngredientMap into/from JSON value */
@@ -34,7 +34,7 @@ object RecipeIngredientMap {
       BSONDocument(
         "_id" -> rim.id.getOrElse(BSONObjectID.generate.stringify),
         "recipeid" -> rim.recipeId,
-        "ingredient" -> rim.ingredient
+        "ingredientid" -> rim.ingredientId
       )
   }
 
@@ -44,7 +44,7 @@ object RecipeIngredientMap {
       RecipeIngredientMap(
         doc.getAs[String]("_id"),
         doc.getAs[String]("recipeid").get,
-        doc.getAs[Ingredient]("ingredient").get
+        doc.getAs[String]("ingredientid").get
       )
   }
 }
@@ -58,9 +58,7 @@ object IngrNutrMap {
       BSONDocument(
         "_id" -> nim.id.getOrElse(BSONObjectID.generate.stringify),
         "ingredientid" -> nim.ingredientId,
-        "nutrient" -> nim.nutrient
-        //,
-        //"quantity" -> nim.quantity
+        "nutrientid" -> nim.nutrientId
       )
   }
 
@@ -70,9 +68,32 @@ object IngrNutrMap {
       IngrNutrMap(
         doc.getAs[String]("_id"),
         doc.getAs[String]("ingredientid").get,
-        doc.getAs[Nutrient]("nutrient").get
-        //,
-        //doc.getAs[Double]("quantity").get
+        doc.getAs[String]("nutrientid").get
+      )
+  }
+}
+
+
+object Recommendation {
+  /** serialize/deserialize a Recommendation into/from JSON value */
+  implicit val RecommendationFormat = Json.format[Recommendation]
+
+  implicit object RecommendationBSONWriter extends BSONDocumentWriter[Recommendation] {
+    def write(r: Recommendation): BSONDocument =
+      BSONDocument(
+        "_id" -> r.id.getOrElse(BSONObjectID.generate.stringify),
+        "recipeid" -> r.recipeId,
+        "userid" -> r.userId
+      )
+  }
+
+  /** deserialize a Recommendation from a BSON */
+  implicit object RecommendationBSONReader extends BSONDocumentReader[Recommendation] {
+    def read(doc: BSONDocument): Recommendation =
+      Recommendation(
+        doc.getAs[String]("_id"),
+        doc.getAs[String]("recipeid").get,
+        doc.getAs[String]("userid").get
       )
   }
 }

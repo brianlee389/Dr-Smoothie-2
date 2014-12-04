@@ -23,12 +23,12 @@ import reactivemongo.bson.Producer.nameValue2Producer
  */
 
 object Users extends Controller with MongoController {
-  val collection = db[BSONCollection]("users")
+  val UserCollection = db[BSONCollection]("users")
 
   /** list all Users */
   def index = Action { implicit request =>
     Async {
-      val cursor = collection.find(
+      val cursor = UserCollection.find(
         BSONDocument()).cursor[User] // get all the fields of all the Users
       val futureList = cursor.toList // convert it to a list of User
       futureList.map { users => Ok(Json.toJson(users)) } // convert it to a JSON and return it
@@ -42,7 +42,7 @@ object Users extends Controller with MongoController {
       
       // create the User
       val createdUser = User(Option(BSONObjectID.generate.stringify), key)
-      collection.insert(createdUser).map(
+      UserCollection.insert(createdUser).map(
         _ => Ok(Json.toJson(createdUser))) 
         // return the created user in a JSON
     }
