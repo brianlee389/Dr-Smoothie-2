@@ -8,7 +8,7 @@
 
         <form class="navbar-form text-center" role="search">
             <div class="input-group">
-            <input ng-model="searchText" type="text" class="form-control" placeholder="Search by name, ingredient or nutrient" name="srch-term" id="srch-term">
+            <input type="text" class="form-control" placeholder="Search by name, ingredient or nutrient" name="srch-term" id="srch-term">
             <div class="input-group-btn">
             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
             </div>
@@ -24,24 +24,16 @@
 
         <div class="tab-content">
             <div class="tab-pane" id="searchByName">
-                <table class="table smoothieList" ng-controller="SearchListCtrl">
-              <thead class="dark-background">
-                  <tr><th>Smoothie</th><th>Recommendations</th><th></th></tr>
-              </thead>
-              <tbody class="dark-background">
-                  <tr ng-repeat="smoothie in allSmoothies | filter:searchText" ng-click="showSmoothieDetails(smoothie.id)"><td>{{smoothie.name}}</td><td>{{smoothie.recommendations}}</td><td><span class="glyphicon glyphicon-chevron-right"></span></td></tr>
-              </tbody>
-            </table>
+                <center><br />
+                    <p>No smothies found.</p>
+                    <p>Browse our top selection</p>
+                </center>
             </div>
             <div class="tab-pane" id="searchByIngredient">
-                <table class="table smoothieList" ng-controller="IngrSearchListCtrl" ng-model="ingrsearch">
-              <thead class="dark-background">
-                  <tr><th>Smoothie</th><th>Recommendations</th><th></th></tr>
-              </thead>
-              <tbody class="dark-background">
-                  <tr ng-repeat="smoothie in allSmoothies | filter:searchText" ng-click="showSmoothieDetails(smoothie.id)"><td>{{smoothie.name}}</td><td>{{smoothie.recommendations}}</td><td><span class="glyphicon glyphicon-chevron-right"></span></td></tr>
-              </tbody>
-            </table>
+                <center><br />
+                    <p>No smothies found.</p>
+                    <p>Available ingredients: oranges, kale, bananas, apples etc</p>
+                </center>
             </div>
             <div class="tab-pane active" id="searchByNutrient">
                 <center><br />

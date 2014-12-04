@@ -73,12 +73,11 @@ angular.module('comdrsmoothieappApp')
             var ingr = {ingr_id: $scope.selectedIngredients[i].id, quantity: 50};
             ingredients.push(ingr);
         }
-
         restFactory.addRecipe (
             {
                 name : $scope.newSmoothieName,
                 ingredients : ingredients,
-                userkey : ''
+                userkey : "TestUser"
             }
         );
     };

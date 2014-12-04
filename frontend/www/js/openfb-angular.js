@@ -164,7 +164,9 @@ angular.module('comdrsmoothieappApp')
                 queryString = url.substr(url.indexOf('#') + 1);
                 obj = parseQueryString(queryString);
                 tokenStore['fbtoken'] = obj['access_token'];
+                console.log(tokenStore);
                 console.log(((new Date()).getTime() / 1000));
+
                 console.log(obj['expires_in']);
                 tokenStore['expires_at'] = Number(obj['expires_in']) + ((new Date()).getTime() / 1000);
                 console.log(tokenStore['expires_at']);
@@ -177,6 +179,7 @@ angular.module('comdrsmoothieappApp')
                 deferredLogin.reject(obj);
                 failCallback();
             } else {
+
                 deferredLogin.reject();
                 failCallback();
             }

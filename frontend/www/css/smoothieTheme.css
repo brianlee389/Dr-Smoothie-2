@@ -159,7 +159,6 @@ table.smoothieList {
 
 ul.nav-tabs-dark-background {
     margin-top: 0.1in;
-    color: #ffffff;
 }
 ul.nav-tabs-dark-background li {
     color: #ffffff;
@@ -169,22 +168,19 @@ ul.nav-tabs-dark-background li {
   .nav-justified > li {
     display: table-cell;
     width: 1%;
-    color: #ffffff;
   }
   .nav-justified > li > a  {
     border-bottom: 1px solid #ddd !important;
     border-radius: 4px 4px 0 0 !important;
     margin-bottom: 0 !important;
-    color: #ffffff;
   }
 }
 
 ul.nav-drsmoothie-bg {
     background-image: url("../img/background_tab_inactive.png");
     background-repeat: repeat-x;
-    background-size: contain;
+    background-size: contain
 
-    color: #ffffff;
 }
 
 div.userInfo {

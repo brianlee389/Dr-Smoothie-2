@@ -20,17 +20,19 @@ angular.module('comdrsmoothieappApp')
     $scope.userID='';
 
 
-    console.log((new Date()).getTime());
-
     // login
     $scope.login = function() {
+    alert("blah");
         openFB.login('email,publish_stream',
             function(data) {
+                alert(openFB.getAccessToken());
                 redirectToHomePage(2000);
+
                 console.log(data);
                 restFactory.addUser(openFB.getAccessToken());
             },
             function() {
+                alert(openFB.getAccessToken());
                 location.reload();
             });
     }
