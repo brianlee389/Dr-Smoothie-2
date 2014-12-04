@@ -1,0 +1,53 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Not needed
+# Home page 
+GET     /                           controllers.Application.index(any = "none")
+
+
+# Users Routes
+GET     /api/users 					controllers.Users.index
+POST    /api/users/create			controllers.Users.create
+OPTIONS /api/users/create           controllers.Users.optionsRequest
+
+# Ingredient Routes
+GET     /api/ingredients            controllers.Ingredients.index
+GET     /api/ingredients/:id        controllers.Ingredients.getIngredient(id: String)
+POST    /api/ingredients/create		controllers.Ingredients.create
+OPTIONS /api/ingredients/create           controllers.Users.optionsRequest
+POST    /api/ingredients/nutrient/add	controllers.Ingredients.addNutrient
+OPTIONS /api/ingredients/nutrient/add           controllers.Users.optionsRequest
+#DELETE  /api/ingredients/:id		controllers.Ingredients.delete(id: String)
+
+# Recipes Routes
+GET     /api/recipes 				controllers.Recipes.index
+GET		/api/recipes/:id 			controllers.Recipes.getRecipe(id: String)
+GET     /api/recipes/mappings/		controllers.Recipes.mappings
+GET     /api/recipes/mappings/:id	controllers.Recipes.recipeMappings(id: String)
+POST    /api/recipes/create			controllers.Recipes.createRecipe
+OPTIONS /api/recipes/create           controllers.Users.optionsRequest
+POST	/api/recipes/addIngredient	controllers.Recipes.AddIngredient
+OPTIONS /api/recipes/addIngredient           controllers.Users.optionsRequest
+POST	/api/recipes/recommendations	controllers.Recipes.recommendCount(id: String)
+OPTIONS /api/recipes/recommendations           controllers.Users.optionsRequest
+POST	/api/recipes/recommend		controllers.Recipes.recommendRecipe(rid: String, userid: String)
+OPTIONS /api/recipes/recommend           controllers.Users.optionsRequest
+
+DELETE  /api/recipes/delete/:id		controllers.Recipes.delete(id: String)
+#OPTIONS /api/recipes/delete/:id           controllers.Users.optionsRequest
+DELETE  /api/recipes/ingredient/remove		controllers.Recipes.removeIngredient(id: String, ingredientId: String)
+OPTIONS /api/recipes/ingredient/remove           controllers.Users.optionsRequest
+
+
+# Nutrients Routes
+GET     /api/nutrients 				controllers.Nutrients.index
+POST    /api/nutrients/create		controllers.Nutrients.create
+OPTIONS /api/nutrients/create           controllers.Users.optionsRequest
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Redirect all unknown routes to the index page
+GET     /*any						controllers.Application.index(any)
