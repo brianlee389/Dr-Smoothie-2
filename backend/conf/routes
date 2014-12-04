@@ -14,7 +14,7 @@ POST    /api/users/create			controllers.Users.create
 # Ingredient Routes
 GET     /api/ingredients            controllers.Ingredients.index
 GET     /api/ingredients/:id        controllers.Ingredients.getIngredient(id: String)
-POST    /api/ingredients/create	controllers.Ingredients.create
+POST    /api/ingredients/create		controllers.Ingredients.create
 POST    /api/ingredients/nutrient/add	controllers.Ingredients.addNutrient
 #DELETE  /api/ingredients/:id		controllers.Ingredients.delete(id: String)
 
