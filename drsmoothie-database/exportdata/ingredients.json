@@ -1,4 +1,15 @@
-{ "_id" : "547e20cdbdd9a152048ce3d4", "name" : "Apple", "foodgroup" : 3 }
-{ "_id" : "547e6922bdd9a17e09de8db9", "name" : "Orange", "foodgroup" : 3 }
-{ "_id" : "547e6928bdd9a17e09de8dba", "name" : "Banana", "foodgroup" : 3 }
-{ "_id" : "547e6934bdd9a17e09de8dbb", "name" : "Strawberry", "foodgroup" : 3 }
+{ "_id" : "5480be48bdd9a1b004d838c0", "name" : "Apple", "foodgroup" : 2 }
+{ "_id" : "5480be4ebdd9a1b004d838c1", "name" : "Orange", "foodgroup" : 2 }
+{ "_id" : "5480be53bdd9a1b004d838c2", "name" : "Banana", "foodgroup" : 2 }
+{ "_id" : "5480be5bbdd9a1b004d838c3", "name" : "Strawberry", "foodgroup" : 2 }
+{ "_id" : "5480c176bdd9a14505d838d0", "name" : "Apple", "foodgroup" : 2 }
+{ "_id" : "5480c190bdd9a15505d838d3", "name" : "Orange", "foodgroup" : 2 }
+{ "_id" : "5480c19ebdd9a18005d838d7", "name" : "Banana", "foodgroup" : 2 }
+{ "_id" : "5480c1a6bdd9a18905d838db", "name" : "Mango", "foodgroup" : 2 }
+{ "_id" : "5480c1c4bdd9a19205d838de", "name" : "Brocoli", "foodgroup" : 1 }
+{ "_id" : "5480c1ddbdd9a19b05d838e1", "name" : "Carrot", "foodgroup" : 1 }
+{ "_id" : "5480c20bbdd9a1a405d838e4", "name" : "Peanut Butter", "foodgroup" : 3 }
+{ "_id" : "5480c21fbdd9a1ad05d838e8", "name" : "Walnut", "foodgroup" : 3 }
+{ "_id" : "5480c229bdd9a1b605d838eb", "name" : "Almond", "foodgroup" : 3 }
+{ "_id" : "5480c289bdd9a1bf05d838ee", "name" : "Milk", "foodgroup" : 3 }
+{ "_id" : "5480c295bdd9a1ce05d838f1", "name" : "Yogurt", "foodgroup" : 3 }

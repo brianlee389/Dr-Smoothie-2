@@ -1,1 +1,11 @@
-{ "_id" : "547e55cfbdd9a1fc08f2a5fb", "name" : "Vitamin A", "group" : 1 }
+{ "_id" : "5480bf89bdd9a1b004d838c4", "name" : "Salt", "group" : 5 }
+{ "_id" : "5480bf99bdd9a1b004d838c5", "name" : "Calcium", "group" : 5 }
+{ "_id" : "5480bfaabdd9a1b004d838c6", "name" : "Vitamin A", "group" : 4 }
+{ "_id" : "5480bfb0bdd9a1b004d838c7", "name" : "Vitamin B", "group" : 4 }
+{ "_id" : "5480bfb3bdd9a1b004d838c8", "name" : "Vitamin C", "group" : 4 }
+{ "_id" : "5480bfb7bdd9a1b004d838c9", "name" : "Vitamin D", "group" : 4 }
+{ "_id" : "5480bfd7bdd9a1b004d838cb", "name" : "Saturated Fat", "group" : 3 }
+{ "_id" : "5480bfdcbdd9a1b004d838cc", "name" : "Unsaturated Fat", "group" : 3 }
+{ "_id" : "5480c0a0bdd9a1b004d838cd", "name" : "Potassium", "group" : 5 }
+{ "_id" : "5480c0bdbdd9a1b004d838ce", "name" : "Fiber", "group" : 1 }
+{ "_id" : "5480c0edbdd9a1b004d838cf", "name" : "Sugar", "group" : 1 }

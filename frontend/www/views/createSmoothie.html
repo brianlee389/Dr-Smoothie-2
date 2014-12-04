@@ -20,7 +20,7 @@
                 </div>
             </form>
         </div>
-        <div class="text-center">
+        <!--<div class="text-center">
             <h4>Select Ingredients</h4>
             <div class="btn-group" id="criteria-type" data-toggle="buttons">
               <label class="btn btn-primary active">
@@ -30,7 +30,7 @@
                 <input type="radio"><h4>Nutrients</h4>
               </label>
             </div>
-        </div><br/>
+        </div><br/>-->
         <!-- Tab panes -->
         <ul class="nav nav-tabs nav-justified nav-drsmoothie-bg" role="tablist" id="tabsCreateView">
             <li class="active"><a href="#vegetables" role="tab" data-toggle="tab">Vegetables</a></li>
@@ -51,7 +51,7 @@
                     <tr><td></td><td></td></tr>
                 </table>
             </div>
-            <div class="tab-pane fade in active" id="fruits">
+            <div class="tab-pane fade in" id="fruits">
                 <table class="table smoothieList">
                     <tr ng-repeat = "fruit in fruits">
                         <td>{{fruit.name}}</td>
@@ -62,7 +62,7 @@
                     <tr><td></td><td></td></tr>
                 </table>
             </div>
-            <div class="tab-pane fade in active" id="nuts">
+            <div class="tab-pane fade in" id="nuts">
                 <table class="table smoothieList">
                     <tr ng-repeat = "nut in nuts">
                         <td>{{nut.name}}</td>
@@ -73,7 +73,7 @@
                     <tr><td></td><td></td></tr>
                 </table>
             </div>
-            <div class="tab-pane fade in active" id="other">
+            <div class="tab-pane fade in" id="other">
                 <table class="table smoothieList">
                     <tr ng-repeat = "other in others">
                         <td>{{other.name}}</td>
