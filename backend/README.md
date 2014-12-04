@@ -1,6 +1,4 @@
-# Dr-Smoothie-2
-# PlayFramework-MongoDB Backend
-# Ionic/AngularJs/Bootstrap/Frontend 
+# Dr-Smoothie-2 
 
 ## Introduction
 Dr-Smoothie is mobile web application that can be compiled into an iPhone or Android application. This application allows you to create a smoothie recipe and share it with Facebook friends or through the Dr-Smoothie application. It also allows you to find what smoothie recipe random people or your friends have made.
@@ -16,6 +14,8 @@ Dr-Smoothie is mobile web application that can be compiled into an iPhone or And
 
 
 ## Need Components:
+### PlayFramework & MongoDB was used for the Backend
+### Ionic/AngularJs/Bootstrap was used for the Frontend 
 
 1. Play Framework 2.1.5
 
