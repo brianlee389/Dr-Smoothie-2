@@ -58,7 +58,13 @@ object Ingredients extends Controller with MongoController {
     }
   }
   
-  // retrieve single ingredient with id parameter
+  /* retrieve single ingredient with id parameter
+    jsonform: 
+    {
+      "ingredient": { //ingredient json},
+      "nutrients": [nutrientobject, ...]
+    }
+  */
   def getIngredient(id: String) = Action {
     Async {
       val ingrCursor = IngrCollection.find(
@@ -84,7 +90,15 @@ object Ingredients extends Controller with MongoController {
     }
   }
 
-  /** create a ingredient from the given JSON */
+  /** create a ingredient from the given JSON 
+  
+  Jsonform :
+    {
+      "name": "sample name",
+      "foodgroup": 123,
+      "nutrients": ["nutrientIDs", ...] 
+    }
+  */
   def create() = Action(parse.json) { request =>
     Async {
       val name: String = request.body.\("name").as[String]
