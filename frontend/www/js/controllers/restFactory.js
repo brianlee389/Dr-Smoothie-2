@@ -75,11 +75,23 @@ angular.module('comdrsmoothieappApp')
 
   restFactory.getIngredients = function(type, successCallback) {
     var typeNo;
-    if(type == "vegetables") typeNo = 1;
-    if(type == "fruits") typeNo = 2;
-    if(type == "nuts") typeNo = 3;
-    if(type == "other") typeNo = 4;
-    return $http.get(urlBase + '/ingredients/'+typeNo).success(successCallback);
+    switch(type) {
+      case "vegetables": typeNo = 1;
+        break;
+      case "fruits": typeNo = 2;
+        break;
+      case "nuts": typeNo = 3;
+        break;
+      case "other": typeNo = 4;
+        break;
+      case "dairy": typeNo = 5;
+        break;
+      case "grains": typeNo = 6;
+        break;
+      default:
+        typeNo = 4;
+    }
+    return $http.get(urlBase + '/ingredients/foodgroup/'+typeNo).success(successCallback);
   };
 
   return restFactory;
