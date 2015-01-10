@@ -7,7 +7,7 @@ import concurrent.Await
 import scala.util.{Try, Success, Failure}
 import scala.concurrent.duration._
 
-
+import controllers.WithCors
 import models.Ingredient
 import models.Ingredient.IngredientFormat
 import models.Ingredient.IngredientBSONReader
@@ -49,15 +49,16 @@ object Ingredients extends Controller with MongoController {
   format is:
   [{"name": "samp name","foodgroup": 123 }, ...]
    */
-  def index = Action { implicit request =>
-    Async {
-      val cursor = IngrCollection.find(
-        BSONDocument()).cursor[Ingredient] // get all the fields of all the ingredients
-      val futureList = cursor.toList // convert it to a list of Ingredient
-      futureList.map { ingredients => Ok(Json.toJson(ingredients)) } // convert it to a JSON and return it
+  def index = WithCors("GET", "POST") {
+    Action { implicit request =>
+      Async {
+        val cursor = IngrCollection.find(
+          BSONDocument()).cursor[Ingredient] // get all the fields of all the ingredients
+        val futureList = cursor.toList // convert it to a list of Ingredient
+        futureList.map { ingredients => Ok(Json.toJson(ingredients)) } // convert it to a JSON and return it
+      }
     }
   }
-  
   /* retrieve single ingredient with id parameter
     jsonform: 
     {
@@ -65,28 +66,41 @@ object Ingredients extends Controller with MongoController {
       "nutrients": [nutrientobject, ...]
     }
   */
-  def getIngredient(id: String) = Action {
-    Async {
-      val ingrCursor = IngrCollection.find(
-        BSONDocument("_id" -> id)).cursor[Ingredient]
-      val futureList = ingrCursor.toList
-      val futureMapping = IngrNutrMapCollection.find(BSONDocument("ingredientid" -> id)).cursor[IngrNutrMap].toList
-      
-      val nutrIdList = Await.result(futureMapping, SIXTYSECONDS)
-                        .map(nim => nim.ingredientId)
-      val nutrQuery = BSONDocument("_id" -> BSONDocument("$in" -> nutrIdList))
-      val nutrsFuture = IngrNutrMapCollection.find(BSONDocument("ingredientid" -> id)).cursor[IngrNutrMap].toList
-      val nutrients = Await.result(nutrsFuture, SIXTYSECONDS)
-      
-      futureList.map { ingredients => {
-        if(!ingredients.isEmpty) {
-          Ok(Json.obj("message" -> "Ingredient could not be found")) 
-        } else {
-          Ok(Json.toJson(Map("ingredient" -> Json.toJson(ingredients.head),
-                          "nutrients" -> Json.toJson(nutrients)))
-          )
-        }
-      }}
+  def getIngredient(id: String) = WithCors("GET", "POST") {
+    Action {
+      Async {
+        val ingrCursor = IngrCollection.find(
+          BSONDocument("_id" -> id)).cursor[Ingredient]
+        val futureList = ingrCursor.toList
+        val futureMapping = IngrNutrMapCollection.find(BSONDocument("ingredientid" -> id)).cursor[IngrNutrMap].toList
+        
+        val nutrIdList = Await.result(futureMapping, SIXTYSECONDS)
+                          .map(nim => nim.ingredientId)
+        val nutrQuery = BSONDocument("_id" -> BSONDocument("$in" -> nutrIdList))
+        val nutrsFuture = IngrNutrMapCollection.find(BSONDocument("ingredientid" -> id)).cursor[IngrNutrMap].toList
+        val nutrients = Await.result(nutrsFuture, SIXTYSECONDS)
+        
+        futureList.map { ingredients => {
+          if(!ingredients.isEmpty) {
+            Ok(Json.obj("message" -> "Ingredient could not be found")) 
+          } else {
+            Ok(Json.toJson(Map("ingredient" -> Json.toJson(ingredients.head),
+                            "nutrients" -> Json.toJson(nutrients)))
+            )
+          }
+        }}
+      }
+    }
+  }
+
+  def getIngredientsByType(foodgroup: String) = WithCors("GET", "POST") {
+    Action { implicit request =>
+      Async {
+        val cursor = IngrCollection.find(
+          BSONDocument("foodgroup" -> foodgroup)).cursor[Ingredient] // get all the fields of all the ingredients
+        val futureList = cursor.toList // convert it to a list of Ingredient
+        futureList.map { ingredients => Ok(Json.toJson(ingredients)) } // convert it to a JSON and return it
+      }
     }
   }
 
